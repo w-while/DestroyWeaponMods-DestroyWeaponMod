@@ -1,5 +1,6 @@
 ﻿using HarmonyLib;
 using hex;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEngine.UI;
@@ -31,9 +32,9 @@ namespace DestroyWeaponMod
                 {
                     lockItems[id] = data.rate;
                 }
-                if (ModLoad.MaskCountIntConfig.Value)
+                if (ModLoad.AncitentCoinReturnRate.Value>0)
                 {
-                    MonoSingleton<SceneManager>.Instance.player.AddAncientCoin(__instance.data.ancientGold);
+                    MonoSingleton<SceneManager>.Instance.player.AddAncientCoin((int)(__instance.data.ancientGold*ModLoad.AncitentCoinReturnRate.Value));
                 }
             }
             public static bool Prefix(bool free, EquipUnLockIcon __instance, ref bool __result, ref bool ___unLock, Image ___icon)
